@@ -7,10 +7,9 @@ import java.util.Scanner;
 class Currency {
 
   private static final List<String> CURRENCY_STINGS = Arrays
-      .asList("AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK",
-          "DKK", "EUR", "GBP", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR",
-          "NOK", "NZD",
-          "PHP", "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR");
+      .asList("AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HRK",
+          "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PLN", "RON",
+          "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR");
 
   private int index = -1;
 

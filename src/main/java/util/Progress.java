@@ -1,3 +1,5 @@
+package util;
+
 public class Progress {
 
   private Thread thread;
