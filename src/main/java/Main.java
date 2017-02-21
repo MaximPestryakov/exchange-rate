@@ -1,3 +1,5 @@
+import api.FixerApi;
+import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class Main {
@@ -21,6 +23,11 @@ public class Main {
       } catch (InputMismatchException e) {
         System.out.println("Wrong format!");
       }
+    }
+    try {
+      new FixerApi().getLatest(base.toString(), symbols.toString());
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }

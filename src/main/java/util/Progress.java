@@ -2,8 +2,8 @@ package util;
 
 public class Progress {
 
-  private Thread thread;
   private static final char[] LOADING_CHARS = new char[]{'|', '/', '-', '\\'};
+  private Thread thread;
 
   Progress() {
     thread = new Thread(() -> {

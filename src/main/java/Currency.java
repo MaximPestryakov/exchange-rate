@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-class Currency {
+public class Currency {
 
   private static final List<String> CURRENCY_STINGS = Arrays
       .asList("AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HRK",
@@ -29,5 +29,13 @@ class Currency {
 
   boolean hasCurrency() {
     return index != -1;
+  }
+
+  @Override
+  public String toString() {
+    if (index == -1) {
+      return "";
+    }
+    return CURRENCY_STINGS.get(index);
   }
 }
