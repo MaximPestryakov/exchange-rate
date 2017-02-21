@@ -1,5 +1,6 @@
 import api.FixerApi;
 import java.util.InputMismatchException;
+import util.Progress;
 
 public class Main {
 
@@ -23,14 +24,15 @@ public class Main {
         System.out.println("Wrong format!");
       }
     }
-    new FixerApi()
+    Progress progress = new Progress();
+    progress.start();
+    FixerApi.getInstance()
         .getLatest(base.toString(), symbols.toString())
         .thenAccept(apiResponse -> {
-          System.out.println(apiResponse.getRates().get(symbols.toString()));
-        })
-        .exceptionally(throwable -> {
-          System.out.println("Some error :(");
-          return null;
+          String date = apiResponse.getDate();
+          Double rate = apiResponse.getRates().get(symbols.toString());
+          progress.stop();
+          System.out.printf("The exchange rate for %s is %f\n", date, rate);
         });
   }
 }
