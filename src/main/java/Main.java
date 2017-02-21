@@ -1,5 +1,4 @@
 import api.FixerApi;
-import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class Main {
@@ -24,10 +23,14 @@ public class Main {
         System.out.println("Wrong format!");
       }
     }
-    try {
-      new FixerApi().getLatest(base.toString(), symbols.toString());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    new FixerApi()
+        .getLatest(base.toString(), symbols.toString())
+        .thenAccept(apiResponse -> {
+          System.out.println(apiResponse.getRates().get(symbols.toString()));
+        })
+        .exceptionally(throwable -> {
+          System.out.println("Some error :(");
+          return null;
+        });
   }
 }
