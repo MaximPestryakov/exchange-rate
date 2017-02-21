@@ -1,12 +1,10 @@
 package api.model;
 
-import java.util.Map;
-
 public class ApiResponse {
 
   private String base;
   private String date;
-  private Map<String, Double> rates;
+  private RateObject rates;
   private String error;
 
   public String getBase() {
@@ -17,11 +15,22 @@ public class ApiResponse {
     return date;
   }
 
-  public Map<String, Double> getRates() {
-    return rates;
-  }
-
   public String getError() {
     return error;
+  }
+
+  public double getRate() {
+    return rates.value;
+  }
+
+  public static class RateObject {
+
+    private String name;
+    private double value;
+
+    public RateObject(String name, double value) {
+      this.name = name;
+      this.value = value;
+    }
   }
 }

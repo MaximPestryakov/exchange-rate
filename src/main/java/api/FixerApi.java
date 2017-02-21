@@ -1,7 +1,9 @@
 package api;
 
 import api.model.ApiResponse;
+import api.model.ApiResponse.RateObject;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import okhttp3.HttpUrl;
@@ -17,10 +19,13 @@ public class FixerApi {
   private static final String API_URL = "api.fixer.io";
 
   private final OkHttpClient client = new OkHttpClient();
-  private final Gson gson = new Gson();
   private final Cache cache = new Cache();
+  private Gson gson;
 
   private FixerApi() {
+    gson = new GsonBuilder()
+        .registerTypeAdapter(RateObject.class, new RatesDeserializer())
+        .create();
   }
 
   public static FixerApi getInstance() {

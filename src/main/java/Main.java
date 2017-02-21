@@ -4,6 +4,9 @@ import util.Progress;
 
 public class Main {
 
+  private Main() {
+  }
+
   public static void main(String[] args) {
     Currency base = new Currency(System.in);
     Currency symbols = new Currency(System.in);
@@ -28,9 +31,9 @@ public class Main {
     progress.start();
     FixerApi.getInstance()
         .getLatest(base.toString(), symbols.toString())
-        .thenAccept(apiResponse -> {
-          String date = apiResponse.getDate();
-          Double rate = apiResponse.getRates().get(symbols.toString());
+        .thenAccept(data -> {
+          String date = data.getDate();
+          double rate = data.getRate();
           progress.stop();
           System.out.printf("The exchange rate for %s is %f\n", date, rate);
         });
