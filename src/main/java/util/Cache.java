@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ResourceBundle;
 
 public class Cache {
 
+  private static final ResourceBundle res = ResourceBundle.getBundle("Strings");
   private static final String PATH = ".cache";
 
   public Cache() {
@@ -22,7 +24,7 @@ public class Cache {
     try {
       Files.write(path, content.getBytes());
     } catch (IOException e) {
-      System.err.println("[Warning] An error occurred while saving cache");
+      System.err.println(res.getString("saving_cache_error"));
     }
   }
 

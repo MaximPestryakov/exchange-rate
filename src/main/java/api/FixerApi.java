@@ -5,6 +5,7 @@ import api.model.ApiResponse.RateObject;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -18,6 +19,7 @@ public class FixerApi {
   private static final String API_SCHEME = "https";
   private static final String API_URL = "api.fixer.io";
 
+  private static final ResourceBundle res = ResourceBundle.getBundle("Strings");
   private final OkHttpClient client = new OkHttpClient();
   private final Cache cache = new Cache();
   private Gson gson;
@@ -50,10 +52,10 @@ public class FixerApi {
         response = client.newCall(request).execute().body().string();
         cache.write(base + "_" + symbols, response);
       } catch (IOException e) {
-        System.err.println("[Warning] No internet connection");
+        System.err.println(res.getString("no_internet"));
         response = cache.read(base + "_" + symbols);
         if (response != null) {
-          System.err.println("[Warning] Using cache");
+          System.err.println(res.getString("using_cache"));
         }
       }
       ApiResponse resp = null;
